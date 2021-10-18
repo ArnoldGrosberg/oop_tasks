@@ -1,63 +1,15 @@
-// page reloading event - lehe taaskäivitamine
-document.addEventListener('DOMContentLoaded', getTasks);
-
-
-function getTasks(e){
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-}
-
-
-
-function getTasks(e){
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-
-  tasks.forEach(function(task){
-    const li = document.createElement('li');
-  li.className = 'collection-item';
-  li.appendChild(document.createTextNode(task));
-
-  const link = document.createElement('a');
-  link.className = 'secondary-content';
-  link.appendChild(document.createTextNode('X'));
-  link.setAttribute('href', '#');
-  li.appendChild(link);
-
-  taskList.appendChild(li);
-  });
-}
-function storeTaskInLocalStorage(task=null) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-  console.log(tasks);
-  tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-}
-
-
-
 
 // UI and LS objects
 ui = new UI();
 ls = new LS();
 
 // event elements
+// form submit event
 const form = document.querySelector('form');
 const taskInput = document.querySelector('#task');
-
+// taskList X click event
+const taskList = document.querySelector('ul');
+taskList.addEventListener('click', deleteTask);
 // events
 // form submit event
 form.addEventListener('submit', addTask);
@@ -72,39 +24,13 @@ function addTask(e){
 	e.preventDefault();
 }
 
-const taskList = document.querySelector('ul');
-taskList.addEventListener('click', deleteTask);
-
-const delAllBtn = document.getElementById('del-tasks');
-delAllBtn.addEventListener('click', deleteTasks);
-
-
-
 function deleteTask(e){
-	ui.deleteTask(e);
-	removeTaskFromLocalStorage(e.target.parentElement.textContent);
-	e.preventDefault();
-}
-
-function removeTaskFromLocalStorage(task) {
-  let tasks;
-  if(localStorage.getItem('tasks') === null){
-    tasks = [];
-  } else {
-    tasks = JSON.parse(localStorage.getItem('tasks'));
-  }
-  console.log(task);
-  tasks.forEach(function(element, index){
-  	console.log(element);
-  	if(element == task.slice(0, -1)){
-  		tasks.splice(index, 1);
-  	}
-  });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-} 
-
-function deleteTasks(e){
-	ui.deleteTasks(task);
-	localStorage.clear();
-	e.preventDefault();
+	// get task name
+	let task = e.target.parentElement.firstChild
+	// delete task value from visual by UI object
+	ui.deleteTask(task);
+	// change task element content before deleting from LS
+	task = task.textContent;
+	// delete task value from LS by LS object
+	ls.deleteTask(task);
 }

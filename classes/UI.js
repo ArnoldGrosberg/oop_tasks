@@ -20,23 +20,12 @@ class UI {
 		// log to console that task is added to UI
 		task.addedToUI();
 	}
-
-
-	deleteTask(e){
-if(e.target.textContent = 'X'){
-    if(confirm('Are you sure to delete this task?')){
-      e.target.parentElement.remove();
-    }
-  }
-
+	deleteTask(task){
+		const deleteIcon = task.nextSibling;
+		if(deleteIcon.textContent == "X"){
+			if(confirm('Do you want to delete this task?')) {
+				task.parentElement.remove();
+			}
+		}
 	}
-	deleteTasks(e){
-	if(confirm('Are you sure to delete all tasks?')){
-      while(taskList.firstChild){
-      	taskList.removeChild(taskList.firstChild);
-// taskList.innerHTML = '';
-	}
-}
-}
-
 }
