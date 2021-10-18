@@ -1,14 +1,23 @@
 class UI {
+	// help funktsion to add DOM element
+	addUIelement(elementname, classname = '', textcontent = '', atributes={}){
+		const element = document.createElement(elementname);
+		element.className = classname;
+		element.appendChild(document.createTextNode(textcontent));
+		// if we want to use atributes, for example a atribute is href with value #
+		if(Object.keys(atributes).lenght > 0){
+			for(let key in atributes){
+				element.setAttribute(key, atributes[key]);
+			}
+		}
+		return element;
+}
+
 	addTask(task){
 		// create list item
-		const li = document.createElement('li');
-		li.className = 'collection-item';
-		li.appendChild(document.createTextNode(task.name));
+		const li = this.addUIelement('li', 'collection-item', task.name);
 		// create link
-		const link = document.createElement('a');
-		link.className = 'secondary-content';
-		link.appendChild(document.createTextNode('X'));
-		link.setAttribute('href', '#');
+		const link = this.addUIelement('a', 'secondary-content', 'X', {'href':'#'});
 		// add link to list item
 		li.appendChild(link);
 		// find list to add created list item
@@ -20,7 +29,7 @@ class UI {
 		// log to console that task is added to UI
 		task.addedToUI();
 	}
-	
+
 
 	deleteTask(task){
 
