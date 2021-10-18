@@ -77,5 +77,6 @@ function deleteTask(e){
 
 function deleteTasks(e){
 	ui.deleteTasks(task);
+	localStorage.clear();
 	e.preventDefault();
 }
