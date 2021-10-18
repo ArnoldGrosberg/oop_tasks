@@ -1,3 +1,26 @@
+// page reloading event - lehe taaskäivitamine
+document.addEventListener('DOMContentLoaded', getTasks);
+
+
+function getTasks(e){
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 // UI and LS objects
 ui = new UI();
 ls = new LS();
