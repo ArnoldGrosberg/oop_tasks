@@ -13,8 +13,28 @@ function getTasks(e){
 
 
 
+function getTasks(e){
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  } else {
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
 
+  tasks.forEach(function(task){
+    const li = document.createElement('li');
+  li.className = 'collection-item';
+  li.appendChild(document.createTextNode(task));
 
+  const link = document.createElement('a');
+  link.className = 'secondary-content';
+  link.appendChild(document.createTextNode('X'));
+  link.setAttribute('href', '#');
+  li.appendChild(link);
+
+  taskList.appendChild(li);
+  });
+}
 
 
 
@@ -57,6 +77,5 @@ function deleteTask(e){
 
 function deleteTasks(e){
 	ui.deleteTasks(task);
-
 	e.preventDefault();
 }
