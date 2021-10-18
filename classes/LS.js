@@ -9,11 +9,13 @@ class LS {
 		}
 		return data;
 	}
+
 	setData(name, data){
 			localStorage.setItem(name, JSON.stringify(data));
 		}
-	addTask(task){
 
+		// add task to LS
+	addTask(task){
 		// set data to the LS
 		let tasks = this.getData('tasks');
 		tasks.push(task);

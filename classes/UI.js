@@ -20,6 +20,7 @@ class UI {
 		// log to console that task is added to UI
 		task.addedToUI();
 	}
+	
 	deleteTask(task){
 		const deleteIcon = task.nextSibling;
 		if(deleteIcon.textContent == "X"){

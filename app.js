@@ -10,6 +10,7 @@ const taskInput = document.querySelector('#task');
 // taskList X click event
 const taskList = document.querySelector('ul');
 taskList.addEventListener('click', deleteTask);
+
 // events
 // form submit event
 form.addEventListener('submit', addTask);
