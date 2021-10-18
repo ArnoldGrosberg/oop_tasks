@@ -12,4 +12,5 @@ class LS {
 		// log to console that task is added to LS
 		task.addedToLS();
 	}
+	
 }

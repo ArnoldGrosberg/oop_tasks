@@ -20,31 +20,20 @@ function addTask(e){
 	e.preventDefault();
 }
 
-
-
-// event elements
 const taskList = document.querySelector('ul');
-const delAllBtn = document.getElementById('del-tasks');
-
-// click element kustutamiseks
 taskList.addEventListener('click', deleteTask);
 
+const delAllBtn = document.getElementById('del-tasks');
 delAllBtn.addEventListener('click', deleteTasks);
 
-function deleteTask(e) {
-if(e.target.textContent = 'X'){
-    if(confirm('Are you sure to delete this task?')){
-      e.target.parentElement.remove();
-    }
-  }
+function deleteTask(e){
+	ui.deleteTask(e);
+
+	e.preventDefault();
 }
 
-function deleteTasks(e) {
-	if(confirm('Are you sure to delete all tasks?')){
-      while(taskList.firstChild){
-      	taskList.removeChild(taskList.firstChild);
-// taskList.innerHTML = '';
+function deleteTasks(e){
+	ui.deleteTasks(task);
 
-  }
-}
+	e.preventDefault();
 }
